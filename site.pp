@@ -25,4 +25,5 @@ file { '/qserv':
 class {'docker':
   version      => '1.12.1-1.el7.centos',
   docker_users => [ 'qserv'],
+  root_dir     => '/qserv/docker'
 }
