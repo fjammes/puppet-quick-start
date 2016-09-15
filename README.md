@@ -29,17 +29,16 @@ puppet resource package puppet ensure=latest
 /bin/systemctl start  puppet.service
 ```
 
-## MASTER: sign certificates
+## MASTER: final setup
 
 ```shell
+# sign certificates
 puppet cert list
 puppet cert sign <agent-hostname> 
-```
-
-## MASTER: configure nodes
-
-```shell
-ln -sf /home/qserv/src/puppet-quick-start/site.pp /etc/puppet/manifests/
+# install official docker module
+puppet module install puppetlabs-docker_platform
+# configure nodes
+ln -f $PWD/site.pp /etc/puppet/manifests/
 puppet parser validate /etc/puppet/manifests/site.pp
 ```
 
